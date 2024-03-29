@@ -24,6 +24,70 @@
             margin-top: 20px; /* Add some top margin for spacing */
             margin-bottom: 30px; /* Add some bottom margin for increased spacing between containers */
         }
+        .card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-radius: 20px;
+    object-fit: cover;
+    height: 200px;
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+.card-title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 0.75rem; /* Add some space below the title */
+}
+
+.card-text {
+    color: #666;
+    font-size: 1.4rem;
+    line-height: 1.5; /* Improve readability by increasing line height */
+}
+
+.btn-primary {
+    background-color: #6C63FF;
+    border-color: #6C63FF;
+    font-weight: bold; /* Make button text bold */
+}
+
+.card_review {
+    background-color: rgba(255, 255, 255, 0.15); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Apply blur effect */
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); /* Soft shadow */
+}
+
+.card-body {
+    padding: 1.25rem;
+}
+
+
+.head {
+    margin-top: 20px;
+    font-size: x-large;
+    color: #6C63FF; /* Use consistent color for headings */
+}
+.text-purple-400 {
+    --tw-text-opacity: 1;
+    color: rgb(192 132 252 / var(--tw-text-opacity));
+}
     </style>
 </head>
 <body>
@@ -38,16 +102,16 @@
     <div class="row">
         {% for c in course %}
         <div class="col-md-4 mb-4">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title text-black animate-pulse">{{ c.CourseName }}</h5>
+            <div class="card card_review">
+                <div class="card-body bg-transparent rounded">
+                    <h5 class="card-title font-extrabold text-purple-400">{{ c.CourseName }}</h5>
                     <img src="{{ c.course_image.url }}" class="card-img-top img-fluid" alt="Card Image">
 
-                    <p class="card-text text-gray-300"><span class="font-extrabold text-black">Author:</span><span class="text-black"> {{ c.TeacherName }} </span></p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold text-black">CourseDuration:</span><span class="text-black">{{ c.CourseDuration }} </span></p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold text-black">Last Updated:</span><span class="text-black">{{ c.LastUpdated }}</span></p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold text-black">Description</span> <span class="text-black">{{ c.Description }}</span> </p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold text-black">Price:</span><span class="text-black"> {{ c.CoursePrice }}</span> </p>
+                    <p class="card-text text-gray-300"><span class="font-extrabold text-white">Author:</span><span class="text-white"> {{ c.TeacherName }} </span></p>
+                    <p class="card-text text-gray-300"><span class="font-extrabold text-white">Course Duration:</span><span class="text-white">{{ c.CourseDuration }} </span></p>
+                    <p class="card-text text-gray-300"><span class="font-extrabold text-white">Last Updated:</span><span class="text-white">{{ c.LastUpdated }}</span></p>
+                    <p class="card-text text-gray-300"><span class="font-extrabold text-white">Description:</span> <span class="text-white">{{ c.Description }}</span> </p>
+                    <p class="card-text text-gray-300"><span class="font-extrabold text-white">Price:</span><span class="text-white"> {{ c.CoursePrice }}</span> </p>
                     <a href="{% url 'to_cart' %}" class="btn btn-primary mt-3">Buy Now</a>
                 </div>
             </div>
@@ -57,14 +121,10 @@
         {% endfor %}
     </div>
 </div>
-<div class="card">
-  <img src="image.jpg" class="card-img-top" alt="Image">
-  <div class="card-body">
-    <h5 class="card-title">Card Title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-  </div>
-</div>
+
+
+
+
 
 
 {% endblock %}
