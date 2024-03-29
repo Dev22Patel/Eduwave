@@ -2,7 +2,6 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login as auth_login
 from .forms import CustomRegistrationForm
-# Assuming you have a UserProfile model that stores user roles
 from .models import UserProfile
 
 def login(request):
@@ -16,18 +15,18 @@ def login(request):
             # Determine the user's role
             try:
                 user_profile = UserProfile.objects.get(user=user)
-                user_role = user_profile.role  # Assuming 'role' is stored in UserProfile
+                user_role = user_profile.role  
             except UserProfile.DoesNotExist:
-                user_role = 'default_role'  # Use a default role or handle as needed
+                user_role = 'default_role'  
 
-            # Store the role in the session for later use (e.g., in your views to tailor content)
+            
             request.session['user_role'] = user_role
 
-            return redirect('home')  # Adjust to your home URL name
+            return redirect('home')  
         else:
             messages.error(request, 'Invalid username or password.')
 
-    return render(request, 'login.html')  # Ensure you have a 'login.html' template
+    return render(request, 'login.html')  
 
 
 # Create your views here.

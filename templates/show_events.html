@@ -41,7 +41,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title text-black animate-pulse">{{ c.CourseName }}</h5>
-                    <img src="{{ c.image.url }}" class="card-img-top" alt="Card Image">
+                    <img src="{{ c.course_image.url }}" class="card-img-top img-fluid" alt="Card Image">
 
                     <p class="card-text text-gray-300"><span class="font-extrabold text-black">Author:</span><span class="text-black"> {{ c.TeacherName }} </span></p>
                     <p class="card-text text-gray-300"><span class="font-extrabold text-black">CourseDuration:</span><span class="text-black">{{ c.CourseDuration }} </span></p>
@@ -53,10 +53,20 @@
             </div>
         </div>
         {% empty %}
-        <p class="text-center mt-5 font-bold text-white">No Events Available</p>
+        <p class="text-center mt-5 font-bold text-white">No Courses Available</p>
         {% endfor %}
     </div>
 </div>
+<div class="card">
+  <img src="image.jpg" class="card-img-top" alt="Image">
+  <div class="card-body">
+    <h5 class="card-title">Card Title</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+  </div>
+</div>
+
+
 {% endblock %}
 
 
