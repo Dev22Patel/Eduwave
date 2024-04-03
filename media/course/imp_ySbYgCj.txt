@@ -1,0 +1,8 @@
+1. to print integers value 
+   (%d)
+
+2.to print real numbers 
+   (%f)
+
+3.to print characters
+   (%c)

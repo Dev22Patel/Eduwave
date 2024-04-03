@@ -94,6 +94,9 @@
         .btn-show:hover {
             background-color: #0056b3;
         }
+        .reviewcard{
+            margin-bottom: 20px;
+        }
 </style>
 <body class="bg-[#16181c] text-white" >  
     <!-- Navbar -->
@@ -138,13 +141,10 @@
 {% endblock model %}
     <!-- content -->
     <div>
-        {% if messages %}
+  {% if messages %}
     {% for message in messages %}
-
     <!-- for that tick mark  -->
-    <div id="myDiv" class="hidden p-4 rounded-md text-black text-center  font-extrabold animate-pulse">{{message}}</div>
-
-         
+    <div id="myDiv" class="hidden p-4 rounded-md text-purple-400 text-center  font-extrabold animate-pulse">{{message}}</div>
     {% endfor %}
   {% endif %}
     </div>
@@ -160,13 +160,12 @@
             <div class="card">
                 <img src="{% static 'AI_image.png' %}" class="card-img-top" alt="{{ c.EventName }}">
                 <div class="card-body">
-                    <h5 class="card-title text-purple-400 animate-pulse">{{ c.EventName }}</h5>
-                    <p class="card-text text-gray-300"><span class="font-extrabold">Author:</span> DAA</p>
+                    <p class="card-text text-gray-300"><span class="font-extrabold">Course:</span> DAA</p>
                     <p class="card-text text-gray-300"><span class="font-extrabold">Price:</span> rs.399</p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold">Author Email:</span> notrealdev2211@gmail.com</p>
+                    <!-- <p class="card-text text-gray-300"><span class="font-extrabold">Author Email:</span> notrealdev2211@gmail.com</p>
                     <p class="card-text text-gray-300"><span class="font-extrabold">Event Date:</span> dev</p>
                     <p class="card-text text-gray-300"><span class="font-extrabold">Bidding Date:</span> dev</p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold">Course Description:</span> Its good course</p>
+                    <p class="card-text text-gray-300"><span class="font-extrabold">Course Description:</span> Its good course</p> -->
                     <button class="btn btn-primary mt-3" onclick="addToCart()">Add To Cart</button>
                 </div>
             </div>
@@ -194,13 +193,9 @@
             <div class="card">
                 <img src="{% static 'Web_dev.png' %}" class="card-img-top" alt="{{ c.EventName }}">
                 <div class="card-body">
-                    <h5 class="card-title text-purple-400 animate-pulse">{{ c.EventName }}</h5>
-                    <p class="card-text text-gray-300"><span class="font-extrabold">Author:</span>DAA </p>
+                    <p class="card-text text-gray-300"><span class="font-extrabold">Course:</span>DAA </p>
                     <p class="card-text text-gray-300"><span class="font-extrabold">Price:</span>rs.399 </p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold">Author Email:</span>notrealdev2211@gmai.com </p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold">Event Date:</span>dev </p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold">Bidding Date:</span>dev </p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold">Course Description:</span>Its good course </p>
+                    
                     <button class="btn btn-primary mt-3" onclick="addToCart()">Add To Cart</button>
                 </div>
             </div>
@@ -210,13 +205,9 @@
             <div class="card">
                 <img src="{% static 'ml.jpeg' %}" class="card-img-top" alt="{{ c.EventName }}">
                 <div class="card-body">
-                    <h5 class="card-title text-purple-400 animate-pulse">{{ c.EventName }}</h5>
                     <p class="card-text text-gray-300"><span class="font-extrabold">Author:</span>DAA </p>
                     <p class="card-text text-gray-300"><span class="font-extrabold">Price:</span>rs.399 </p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold">Author Email:</span>notrealdev2211@gmai.com </p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold">Event Date:</span>dev </p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold">Bidding Date:</span>dev </p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold">Course Description:</span>Its good course </p>
+                    
                     <button class="btn btn-primary mt-3" onclick="addToCart()">Add To Cart</button>
                 </div>
             </div>
@@ -262,7 +253,7 @@
         
         <br><br><br>
     <div class="container mt-5 mb-5">
-    <h1 class="head text-left font-bold ">See what others are achieving through learning</h1>
+    <h1 class="head text-left flex justify-center font-extrabold uppercase">See what others are achieving through learning</h1>
   
         
    
@@ -277,29 +268,36 @@
             width: 100%;
             height: auto;
         }
+        .animated {
+            opacity: 0;
+            animation: fadeIn ease-in 0.5s forwards;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
     </style>
     
-    <div class="row mt-5">
-        {% for img in images %}
-        <div class="col-md-4">
-            <div class="card bg-light shadow-sm rounded custom-card">
-                <div class="row g-0">
-                    <div class="col-md-4">
-                        <img src="{{ img.image.url }}" class="card-img" alt="{{ img.name }}">
+    
+
+    <div class="container mt-5">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            {% for img in images %}
+            <div class="col">
+                <div class="animate card shadow-sm">
+                    <img src="{{ img.image.url }}" class="animate card-img-top" alt="{{ img.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ img.name }}</h5>
+                        <p class="card-text">{{ img.message }}</p>
                     </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ img.name }}</h5>
-                            <p class="card-text">{{ img.message }}</p>
-                        </div>
+                    <div class="card-footer text-muted text-center">
+                        Current Status: {{ img.current_status }}
                     </div>
-                </div>
-                <div class="card-footer text-muted mt-auto">
-                    Current Status : {{ img.current_status }}
                 </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
     
     

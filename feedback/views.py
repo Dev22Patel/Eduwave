@@ -3,7 +3,6 @@ from feedback.forms import reviewform
 from .models import Review 
 from django.contrib.auth.decorators import login_required
 
-@login_required
 def feedback(request):  
     if request.method == 'POST':  
         form = reviewform(request.POST, request.FILES)  

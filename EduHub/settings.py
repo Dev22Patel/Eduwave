@@ -141,3 +141,6 @@ LOGOUT_REDIRECT_URL = "index"
 
 LOGIN_URL = 'index'
 
+API_KEY = "test_df58f88837671bd9aad9e81ec5b"
+AUTH_TOKEN = "test_8457866ca57c0d6c1a9d0f82ebd"
+SALT = "24543a90ede5449eb656e979afa7dd25"

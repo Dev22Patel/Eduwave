@@ -1,6 +1,8 @@
 #CourseApp/admin.py
 
 from django.contrib import admin
-from .models import Course
+from .models import *
 
 admin.site.register(Course)
+admin.site.register(Cart)
+admin.site.register(CartItem)

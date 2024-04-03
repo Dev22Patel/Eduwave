@@ -6,6 +6,16 @@
     <title>Document</title> 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     {% load static %}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <!-- Add Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Add jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Add Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
     <link rel="stylesheet" href="{% static 'base.css' %}">
     <style>
          /* Custom styles */
@@ -88,13 +98,66 @@
     --tw-text-opacity: 1;
     color: rgb(192 132 252 / var(--tw-text-opacity));
 }
-    </style>
+.btn-cart {
+    font-size: 16px; /* Adjust font size as needed */
+    margin-top: 10px; /* Add margin to separate from the top */
+}
+
+.container {
+    position: relative; /* Ensure position relative for absolute positioning */
+}
+
+.navbar-nav.navbar-right {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.messages {
+    margin-top: 10px;
+}
+
+.alert {
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+}
+
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+
+</style>
 </head>
 <body>
+    
+
+
+  
+    
 {% block content %}
-<a href="{% url 'home' %}" class="bg-purple-400 text-white font-bold p-2 rounded-lg m-3">Back</a>
+
+<div class="container flex justify-between">
+    <a href="{% url 'home' %}" class="bg-purple-400 text-white font-bold p-2 rounded-lg m-3 order-1">Back</a>
+    <a href="{% url 'cartapp:cart' %}" class="bg-purple-400 text-white font-bold p-2 rounded-lg m-3 order-2 flex items-center">Cart <i class="fas fa-shopping-cart ml-2"></i></a>
+</div>
+
+
 <h1 class="text-center mt-5 mb-5 font-extrabold text-white">ALL COURSES</h1>
 
+{% if messages %}
+    <div id="alertContainer" class="alert alert-warning" role="alert">
+        <ul class="messages">
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        <button id="closeBtn" type="button" class="btn-close" aria-label="Close"></button>
+    </div>
+{% endif %}
 
 
 
@@ -105,14 +168,17 @@
             <div class="card card_review">
                 <div class="card-body bg-transparent rounded">
                     <h5 class="card-title font-extrabold text-purple-400">{{ c.CourseName }}</h5>
-                    <img src="{{ c.course_image.url }}" class="card-img-top img-fluid" alt="Card Image">
-                    <li><a href="{{ c.file }}">{{ c.CourseName }}</a></li>                    
+                    <img src="{{ c.course_image.url }}" class="card-img-top img-fluid" alt="Card Image" style="height: 250px;">
+                    <!-- <li><a href="{{ c.file }}">{{ c.CourseName }}</a></li>                     -->
                     <p class="card-text text-gray-300"><span class="font-extrabold text-white">Author:</span><span class="text-white"> {{ c.TeacherName }} </span></p>
                     <p class="card-text text-gray-300"><span class="font-extrabold text-white">Course Duration:</span><span class="text-white">{{ c.CourseDuration }} </span></p>
                     <p class="card-text text-gray-300"><span class="font-extrabold text-white">Last Updated:</span><span class="text-white">{{ c.LastUpdated }}</span></p>
                     <p class="card-text text-gray-300"><span class="font-extrabold text-white">Description:</span> <span class="text-white">{{ c.Description }}</span> </p>
                     <p class="card-text text-gray-300"><span class="font-extrabold text-white">Price:</span><span class="text-white"> {{ c.CoursePrice }}</span> </p>
-                    <a href="{% url 'to_cart' %}" class="btn btn-primary mt-3">Buy Now</a>
+                    <div class="d-flex justify-content-between"> <!-- Added Flexbox utility class -->
+                        <a href="{% url 'cartapp:add_cart' c.uid %}" class="btn btn-primary mt-3">Buy Now</a>
+                        <a href="{% url 'to_cart' %}" class="btn btn-primary mt-3">Details</a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -121,6 +187,7 @@
         {% endfor %}
     </div>
 </div>
+
 
 
 
@@ -180,3 +247,33 @@
   </footer>
 </body>
 </html>
+
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+    var alertContainer = document.getElementById("alertContainer");
+    if (alertContainer) {
+        // Show the alert
+        alertContainer.style.display = "block";
+
+        // Auto hide the alert after 5 seconds
+        setTimeout(function() {
+            alertContainer.style.transition = "opacity 1s ease";
+            alertContainer.style.opacity = "0"; // Fade out the alert
+            setTimeout(function() {
+                alertContainer.parentNode.removeChild(alertContainer); // Remove the alert from DOM
+            }, 1000); // Wait for the fade out animation to complete
+        }, 1000); // Wait for 5 seconds before hiding the alert
+
+        // Hide the alert when close button is clicked
+        var closeBtn = document.getElementById("closeBtn");
+        if (closeBtn) {
+            closeBtn.addEventListener("click", function() {
+                alertContainer.parentNode.removeChild(alertContainer);
+            });
+        }
+    }
+});
+
+</script>

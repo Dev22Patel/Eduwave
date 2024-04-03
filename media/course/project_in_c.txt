@@ -1,0 +1,137 @@
+Write a program to represent date as a data type and let programmer do different operations on dates mentioned below.
+
+Implement (write definition) following functions.
+
+typedef struct
+{
+	/* define appropriate members here */
+}date;
+/* sets all members of date and returns variable of type date */
+
+date set_date(int mm, int dd, int yyyy, int hh, int mm, int ss);
+/* prints date in DD/MM/YYYY HH:MM:SS format*/
+
+void print_date(date d);
+/* returns 1 if the date1 is later than date2, otherwise, it returns 0. */
+
+short is_later(date date1, date date2);
+/* sorts array of dates */
+
+void sort_dates(date dates[], int n);
+Using above definitions convert input data in desired output format.
+
+Note: In programming world, 'date' normally means date and time together. If time is not provided or not needed to be displayed in the format then midnight 00:00:00 is used by default.
+
+Input Format
+
+Input will contain n + 1 lines.
+
+First line will have number of dates as input (value of n).
+
+Next n rows will have one date each in YYYY MM DD HH MM SS format.
+
+Assume that input date will always be a valid date and 24-hour format is used.
+
+Constraints
+
+0 < n, year <= 9999
+
+Inputs will have only valid dates from 0001-9999 year
+
+Output Format
+
+Output should have n + 1 lines.
+
+First line will have number of dates as input (value of n).
+
+Next n rows will have one date each in DD/MM/YYYY HH:MM:SS format. All n dates should be in ascending order.
+
+Sample Input 0
+
+4
+2011 05 07 23 45 45
+2014 05 07 23 45 45
+0012 05 07 02 02 02
+0001 01 01 01 01 01
+Sample Output 0
+
+4
+01/01/0001 01:01:01
+07/05/0012 02:02:02
+07/05/2011 23:45:45
+07/05/2014 23:45:45
+
+
+
+
+
+
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+typedef struct
+{
+    int dd,mm,yy,hh,mi,ss;
+}date;
+
+date set_date(date d[],int n)
+{
+     for(int i=0;i<n;i++)
+        scanf("%d%d%d%d%d%d",&d[i].yy,&d[i].mm,&d[i].dd,&d[i].hh,&d[i].mi,&d[i].ss);
+    return d[n];
+}
+
+int is_later(date d1, date d2)
+{
+    
+     if(d1.yy-d2.yy>0 || d1.mm-d2.mm>0 || d1.dd-d2.dd>0 || d1.hh-d2.hh>0 || d1.mi-d2.mi>0 || d1.ss-d2.ss>0)
+        return 1;
+    else 
+        return 0;
+
+}
+
+void print_date(date d[],int n)
+{
+    for(int i=0;i<n;i++)
+       printf("%.02d/%.02d/%.04d %.02d:%.02d:%.02d\n",d[i].dd,d[i].mm,d[i].yy,d[i].hh,d[i].mi,d[i].ss);
+}
+
+void sort_dates(date d[], int n)
+{
+    int i,j;
+    date temp[n];
+    for(i=0;i<n-1;i++)
+    {
+        for(j=0;j<n-i-1;j++)
+        {
+            if(is_later(d[j],d[j+1]))
+            {
+                temp[j]=d[j];
+                d[j]=d[j+1];
+                d[j+1]=temp[j];
+            }
+        }
+    }
+}
+int main() 
+{
+    int n;
+    printf("Enter the value of how many dates you want to input \n");
+    scanf("%d",&n);
+    date d[n];
+    
+    printf("Enter the 'n' dates in format of YY:MM:DD\nand\nenter the time in HH:MINMIN:SS format\n");
+    printf("OUTPUT:\n");
+    d[n]=set_date(d,n);
+    sort_dates(d,n);
+    print_date(d,n);
+    printf("The dates that you have enter are now SORTED\n");
+    printf("THANK YOU MF");
+    return 0;
+}

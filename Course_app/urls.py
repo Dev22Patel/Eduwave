@@ -9,5 +9,5 @@ urlpatterns = [
     path('add/', add_course, name='add_course'),  # Ensure this name matches what you use in the template
     path('course_form',course_form,name="course_form"),
     path('serve_file/<str:file_name>/', serve_file, name='serve_file'),
-
+    
 ]

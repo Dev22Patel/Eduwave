@@ -3,8 +3,7 @@ from django.contrib.auth.decorators import login_required
 from users_app.models import UserProfile
 from django.http import HttpResponse
 from django.contrib.auth import logout
-from Course_app.models import Course
-from cart.models import Cart,CartItem
+from Course_app.models import *
 from feedback.models import Review
 
 
@@ -63,3 +62,23 @@ def logout_view(request):
 
 def view_profile(request):
     return render(request,'user_profile.html')
+
+
+def orders(request):
+     orders = Cart.objects.filter(is_paid = True , user = request.user)
+     course = Course.objects.all()
+     context = {
+          'orders':orders,
+          'course':course
+     }
+     return render(request,'orders.html', context)
+
+def success(request):
+     payment_request = request.GET.get('payment_request_id')
+     cart = Cart.objects.get(instamojo_id = payment_request)
+     cart.is_paid = True
+     cart.save()
+     return redirect('/orders/')
+
+
+
