@@ -1,28 +1,45 @@
-# EventHive
+# Eduwave
 
-Welcome to EventHive, your ultimate platform for connecting event hosts with sponsors! EventHive is crafted to streamline the process of hosting and sponsoring events, making it easier than ever for organizations to collaborate and create unforgettable experiences.
+Welcome to Eduwave! This project is a comprehensive e-learning platform that offers a range of functionalities for both teachers and students. Below is an overview of the main features and functionalities of the project:
 
-## Features
+## Functionalities
 
-- **Event Hosting:** Event hosts can easily add events with key details such as event date, description, lead organization name, and contact email.
-- **Event Details:** Hosts can include comprehensive event descriptions, ensuring potential sponsors have all the information they need to make informed decisions.
-- **Bidding Date:** Set a specific bidding date for sponsors, creating a timeline for sponsorship decisions and streamlining the planning process.
-- **Interactive Interface:** Both hosts and sponsors can navigate through a user-friendly interface to post events, bid for sponsorships, and communicate effectively.
+1. **Teacher Course Management:**
+   - Teachers can create and manage courses.
+   - They can add details such as course name, price, duration, teacher name, course image, last updated date, and description.
+   - Additionally, teachers can upload course materials and a preview file for students to review.
 
-## Getting Started
+2. **Student Course Enrollment:**
+   - Students can browse and purchase courses offered by teachers.
+   - Upon purchasing a course, it is added to the student's cart for checkout.
+   
+3. **Shopping Cart:**
+   - The shopping cart functionality allows students to add courses for purchase.
+   - Students can view their cart, update quantities, and remove courses before finalizing their purchase.
 
-To dive into EventHive, follow these steps:
+4. **Payment Integration with Instamojo:**
+   - Integrated payment system using the Instamojo payment gateway.
+   - Students can securely make payments for their selected courses using Instamojo's payment processing.
 
-1. Clone the EventHive repository:-  
- git clone https://github.com/Dev22Patel/Event_Hive.git
+5. **Student Profile:**
+   - Each student has a profile where they can view their purchased courses and manage their account details.
+   - Profile information includes name, email, and possibly additional details such as address and contact information.
 
-2.Navigate to the EventHive directory:-
-cd EventHive
+6. **Course Reviews:**
+   - Learners can add reviews and ratings for the courses they have completed.
+   - Reviews provide valuable feedback for both teachers and prospective students.
 
-3, Create Migrations:-
-python manage.py migrate
+## Installation and Setup
 
-4. Run the project on localServer:-
-python manage.py runserver
+To set up and run the Eduwave project locally, follow these steps:
 
-Let's make your event a success with EventHive
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Dev22Patel/Eduwave.git
+2. Access the project in your web browser at 
+   ```bash
+   http://localhost:8000.
+
+In this Markdown file, you can replace placeholders like `Dev22Patel`,`harshp4114` with your actual GitHub username and customize any other details as needed.
+
+ 
