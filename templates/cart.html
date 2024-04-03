@@ -117,7 +117,7 @@
                           <td>
                               <img src="/media/{{ cart_item.course.course_image }}" alt="{{ cart_item.course.CourseName }}" style="height: 100px; width: 50px; ">
                           </td>
-                          <td>{{ cart_item.course.CoursePrice }}</td>
+                          <td>{{ cart_item.course.CoursePrice }} ₹</td>
                           <!-- <td>
                               <a href="{{ cart_item.course.file.url }}" download="{{ cart_item.course.file }}" class="btn btn-sm btn-primary">
                                   <i class="bi bi-download me-2"></i>Download
@@ -135,7 +135,7 @@
                   <tfoot>
                       <tr>
                           <td colspan="5" class="text-end fw-bold">Total:</td>
-                          <td>{{ cart.get_cart_total }}</td>
+                          <td>{{ cart.get_cart_total }} ₹</td>
                       </tr>
                   </tfoot>
               </table>

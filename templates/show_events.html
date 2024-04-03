@@ -177,7 +177,7 @@
                     <p class="card-text text-gray-300"><span class="font-extrabold text-white">Price:</span><span class="text-white"> {{ c.CoursePrice }}</span> </p>
                     <div class="d-flex justify-content-between"> <!-- Added Flexbox utility class -->
                         <a href="{% url 'cartapp:add_cart' c.uid %}" class="btn btn-primary mt-3">Buy Now</a>
-                        <a href="{% url 'to_cart' %}" class="btn btn-primary mt-3">Details</a>
+                        <a href="{% url 'cartapp:show_preview' c.uid %}" class="btn btn-primary mt-3">Details</a>
                     </div>
                 </div>
             </div>

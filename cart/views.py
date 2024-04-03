@@ -68,3 +68,10 @@ def cart(request):
 def delete_item(request,cart_item_uid):
      CartItem.objects.get(uid = cart_item_uid).delete()
      return redirect('/to_cart/cart/')
+
+def show_preview(request, course_uid):
+    course = Course.objects.get(uid = course_uid)
+    context = {
+        'course':course
+    }
+    return render(request, 'course_preview.html', context)

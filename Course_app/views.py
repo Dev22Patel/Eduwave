@@ -7,21 +7,16 @@ def add_course(request):
     if request.method == 'POST':
         form = CourseForm(request.POST, request.FILES)
         if form.is_valid():
-            # Save the new event to the database
             form.save()
-            # Optionally, use Django's messaging framework to send a success message
             messages.success(request, 'The course has been added successfully!')
-            # Redirect to a new URL (e.g., the homepage or a 'success' page)
-            return redirect('home')  # Ensure 'success' matches the actual name of your success URL in urls.py
+            return redirect('home')  
         else:
-            # Log form errors if form is not valid
             print(form.errors)
             return HttpResponse("not registered")
     else:
-        # Instantiate a blank version of the form if request is not POST
         form = CourseForm()
+        messages.success(request, 'The course has been added successfully!')
 
-    # If method is GET or form is invalid, render the page with the form
     return render(request, 'home.html', {'form': form})
 
 

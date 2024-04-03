@@ -61,17 +61,31 @@ def logout_view(request):
 
 
 def view_profile(request):
-    return render(request,'user_profile.html')
+    user_profile = request.user
+    
+    # Pass the user object to the template context
+    context = {
+        'user_profile': user_profile
+    }
+    
+    # Render the template with the context
+    return render(request, 'user_profile.html', context)
 
 
 def orders(request):
-     orders = Cart.objects.filter(is_paid = True , user = request.user)
-     course = Course.objects.all()
-     context = {
-          'orders':orders,
-          'course':course
-     }
-     return render(request,'orders.html', context)
+    user = request.user
+    course = Course.objects.all()
+    orders = Cart.objects.filter(user=user, is_paid=True).prefetch_related('cart_items__course')
+
+    displayed_courses = set()
+
+    context = {
+        'orders': orders,
+        'course': course,
+        'displayed_courses': displayed_courses
+    }
+    return render(request, 'orders.html', context)
+
 
 def success(request):
      payment_request = request.GET.get('payment_request_id')
@@ -79,6 +93,9 @@ def success(request):
      cart.is_paid = True
      cart.save()
      return redirect('/orders/')
+
+
+
 
 
 

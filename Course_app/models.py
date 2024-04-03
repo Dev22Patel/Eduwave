@@ -21,15 +21,24 @@ class Course(BaseModel):
     course_image = models.ImageField(null=True,blank=True,upload_to= 'course_photo/')
     LastUpdated = models.DateField()
     Description = models.TextField()
-    
+    preview = models.FileField(null=True, blank=True,upload_to= 'preview/')
+
     def __str__(self):
         return self.CourseName
+    
+    def is_purchased(self, user):
+        try:
+            cart = Cart.objects.filter(user=user, is_paid=True, cart_items__course=self).first()
+            return bool(cart)
+        except Cart.DoesNotExist:
+            return False
 
 
 class Cart(BaseModel):
     user = models.ForeignKey(User,null=True,blank=True ,on_delete=models.SET_NULL,related_name="carts")
     is_paid = models.BooleanField(default=False)
     instamojo_id = models.CharField(max_length=1000)
+
     def get_cart_total(self):
         return self.cart_items.aggregate(total=Sum('course__CoursePrice'))['total'] or 0
     
