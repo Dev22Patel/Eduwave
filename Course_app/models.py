@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models import Sum
 import uuid
+
 class BaseModel(models.Model):
     uid = models.UUIDField(default=uuid.uuid4 , editable=False, primary_key=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -11,7 +12,6 @@ class BaseModel(models.Model):
         abstract = True
 
 
-
 class Course(BaseModel):
     CourseName = models.CharField(max_length=100)
     CoursePrice = models.DecimalField(max_digits=10, decimal_places=2)
@@ -19,10 +19,10 @@ class Course(BaseModel):
     TeacherName = models.CharField(max_length=100)
     file = models.FileField(null=True, blank=True,upload_to= 'course/')
     course_image = models.ImageField(null=True,blank=True,upload_to= 'course_photo/')
-    LastUpdated = models.DateField()
     Description = models.TextField()
+    Topic_to_be_covered = models.TextField(null=True, blank=True)
     preview = models.FileField(null=True, blank=True,upload_to= 'preview/')
-
+    
     def __str__(self):
         return self.CourseName
     

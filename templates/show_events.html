@@ -172,12 +172,11 @@
                     <!-- <li><a href="{{ c.file }}">{{ c.CourseName }}</a></li>                     -->
                     <p class="card-text text-gray-300"><span class="font-extrabold text-white">Author:</span><span class="text-white"> {{ c.TeacherName }} </span></p>
                     <p class="card-text text-gray-300"><span class="font-extrabold text-white">Course Duration:</span><span class="text-white">{{ c.CourseDuration }} </span></p>
-                    <p class="card-text text-gray-300"><span class="font-extrabold text-white">Last Updated:</span><span class="text-white">{{ c.LastUpdated }}</span></p>
                     <p class="card-text text-gray-300"><span class="font-extrabold text-white">Description:</span> <span class="text-white">{{ c.Description }}</span> </p>
                     <p class="card-text text-gray-300"><span class="font-extrabold text-white">Price:</span><span class="text-white"> {{ c.CoursePrice }}</span> </p>
                     <div class="d-flex justify-content-between"> <!-- Added Flexbox utility class -->
                         <a href="{% url 'cartapp:add_cart' c.uid %}" class="btn btn-primary mt-3">Buy Now</a>
-                        <a href="{% url 'cartapp:show_preview' c.uid %}" class="btn btn-primary mt-3">Details</a>
+                        <a href="{% url 'cartapp:show_preview' c.uid %}" class="btn btn-primary mt-3">Preview</a>
                     </div>
                 </div>
             </div>

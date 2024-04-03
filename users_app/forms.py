@@ -19,14 +19,6 @@ class CustomRegistrationForm(forms.Form):
     password2 = forms.CharField(label="Confirm Password", widget=forms.PasswordInput, required=True)
     role = forms.ChoiceField(choices=ROLE_CHOICES, required=True)
 
-    def clean(self):
-        cleaned_data = super().clean()
-        password = cleaned_data.get("password")
-        password2 = cleaned_data.get("password2")
-
-        if password and password2 and password != password2:
-            self.add_error('password2', "Password must match.")
-        return cleaned_data
 
     def save(self):
         # Ensure the user instance is created with the specified username, email, and password

@@ -117,16 +117,17 @@ thead tr {
                         <tr class="cart-item"></tr>
                         <td style="width: 150px;">{{ forloop.counter }}</td>
                             {% for cart_item in order.cart_items.all %}
-                                
                                     <td style="width: 200px;">{{ cart_item.course.CourseName }}</td>
                                     <td>
                                         <img src="/media/{{ cart_item.course.course_image }}" alt="{{ cart_item.course.CourseName }}" style="height: 100px; width: 100px; ">
                                     </td>
                                     <td>{{ cart_item.course.CoursePrice }}</td>
                                     <td>
-                                        {% if cart_item.course.file %}
-                                            <a href="{{ cart_item.course.file.url }}" download>Download File</a>
-                                        {% else %}
+                                      {% if cart_item.course.file %}
+                                      <a href="{{ cart_item.course.file.url }}" class="btn btn-primary" download>
+                                          <i class="bi bi-cloud-download"></i> Download File
+                                      </a>
+                                      {% else %}
                                             No file available for download
                                         {% endif %}
                                     </td>

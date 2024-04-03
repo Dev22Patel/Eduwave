@@ -105,9 +105,6 @@
             Edu<span class="thive text-purple-400 transition-colors duration-500 ease-in-out delay-300">Wave</span>
         </div>
         <div class="flex items-center">
-            <ul class="flex font-semibold">
-                <li class="mx-4 cursor-pointer hover:text-purple-400"><a href="{% url 'feedback:feedback_form' %}" >Review</a></li>
-            </ul>
             <a class="btn btn-primary btn-sm ml-4 mr-4" href="{% url 'access:register' %}?modal=open">Login/Signup</a>
         </div>
     </nav>
@@ -249,10 +246,7 @@
             </div>
         </div> -->
         
-        <br><br><br>
-    <div class="container mt-5 mb-5">
-    <h1 class="head text-left flex justify-center font-extrabold uppercase">See what others are achieving through learning</h1>
-  
+        
         
    
     <style>
@@ -279,25 +273,6 @@
     
     
 
-    <div class="container mt-5">
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            {% for img in images %}
-            <div class="col">
-                <div class="animate card shadow-sm">
-                    <img src="{{ img.image.url }}" class="animate card-img-top" alt="{{ img.name }}">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ img.name }}</h5>
-                        <p class="card-text">{{ img.message }}</p>
-                    </div>
-                    <div class="card-footer text-muted text-center">
-                        Current Status: {{ img.current_status }}
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-    </div>
-    
     
 
 

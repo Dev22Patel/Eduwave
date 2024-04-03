@@ -31,13 +31,15 @@ def Mainpage(request):
 def home(request):
     user = request.user
     user_role = 'No role assigned'  # Default message if the user has no role
+    c=Review.objects.all()
+
     try:
         user_profile = UserProfile.objects.get(user=user)
         user_role = user_profile.role
     except UserProfile.DoesNotExist:
         pass  # You can handle users without a profile differently if needed
 
-    return render(request, 'home.html', {'username': user.username, 'user_role': user_role})
+    return render(request, 'home.html', {'username': user.username, 'user_role': user_role, 'images':c})
 
 @login_required
 def view_events(request):
@@ -62,7 +64,6 @@ def logout_view(request):
 
 def view_profile(request):
     user_profile = request.user
-    
     # Pass the user object to the template context
     context = {
         'user_profile': user_profile
@@ -77,12 +78,9 @@ def orders(request):
     course = Course.objects.all()
     orders = Cart.objects.filter(user=user, is_paid=True).prefetch_related('cart_items__course')
 
-    displayed_courses = set()
-
     context = {
         'orders': orders,
         'course': course,
-        'displayed_courses': displayed_courses
     }
     return render(request, 'orders.html', context)
 

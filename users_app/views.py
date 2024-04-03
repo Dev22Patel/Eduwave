@@ -12,7 +12,6 @@ def login(request):
         if user is not None:
             auth_login(request, user)
 
-            # Determine the user's role
             try:
                 user_profile = UserProfile.objects.get(user=user)
                 user_role = user_profile.role  
@@ -29,18 +28,15 @@ def login(request):
     return render(request, 'login.html')  
 
 
-# Create your views here.
-
 def register(request):
     if request.method == "POST":
         register_form = CustomRegistrationForm(request.POST)
         if register_form.is_valid():
             register_form.save()
-            messages.success(request, "New user account created")  # Inform the user of success
-            return redirect('index')  # Redirect to a new URL, adjust as necessary
+            messages.success(request, "New user account created") 
+            return redirect('index')  
         else:
-            # If the form is not valid, the errors will be displayed in the form template
-            print(register_form.errors)  # Optional: Log form errors
+            print(register_form.errors)  
     else:
         register_form = CustomRegistrationForm()
     

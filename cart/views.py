@@ -60,7 +60,6 @@ def cart(request):
     cart.instamojo_id = response['payment_request']['id']
     cart.save()
     context = {'cart': cart, 'payment_url': response['payment_request']['longurl']}
-    print(response)
     return render(request, 'cart.html', context)
 
 

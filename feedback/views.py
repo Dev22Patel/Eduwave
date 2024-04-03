@@ -11,7 +11,7 @@ def feedback(request):
             # Getting the current instance object to display in the template  
             img_object = form.instance  
               
-            return render(request, 'feedback.html', {'form': form, 'img_obj': img_object})  
+            return redirect('/home',{'form': form, 'img_obj': img_object})  
     else:  
         form = reviewform()  
   
@@ -23,4 +23,4 @@ def show_review(request):
     context={
         "images":c,
     }
-    return render(request,'index.html',context)
+    return render(request,'home.html',context)
