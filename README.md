@@ -40,6 +40,6 @@ To set up and run the Eduwave project locally, follow these steps:
    ```bash
    http://localhost:8000.
 
-In this Markdown file, you can replace placeholders like `Dev22Patel`,`harshp4114` with your actual GitHub username and customize any other details as needed.
+ `Dev22Patel`,`harshp4114` 
 
  
