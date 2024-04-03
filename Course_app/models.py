@@ -8,6 +8,7 @@ class Course(models.Model):
     CoursePrice = models.DecimalField(max_digits=10, decimal_places=2)
     CourseDuration = models.CharField(max_length=100)
     TeacherName = models.CharField(max_length=100)
+    file = models.FileField(null=True, blank=True,upload_to= 'course/')
     course_image = models.ImageField(null=True,blank=True,upload_to= 'course_photo/')
     LastUpdated = models.DateField()
     Description = models.TextField()

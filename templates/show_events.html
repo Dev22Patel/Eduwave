@@ -106,7 +106,7 @@
                 <div class="card-body bg-transparent rounded">
                     <h5 class="card-title font-extrabold text-purple-400">{{ c.CourseName }}</h5>
                     <img src="{{ c.course_image.url }}" class="card-img-top img-fluid" alt="Card Image">
-
+                    <li><a href="{{ c.file }}">{{ c.CourseName }}</a></li>                    
                     <p class="card-text text-gray-300"><span class="font-extrabold text-white">Author:</span><span class="text-white"> {{ c.TeacherName }} </span></p>
                     <p class="card-text text-gray-300"><span class="font-extrabold text-white">Course Duration:</span><span class="text-white">{{ c.CourseDuration }} </span></p>
                     <p class="card-text text-gray-300"><span class="font-extrabold text-white">Last Updated:</span><span class="text-white">{{ c.LastUpdated }}</span></p>

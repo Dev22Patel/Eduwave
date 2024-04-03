@@ -61,3 +61,5 @@ def logout_view(request):
 
 
 
+def view_profile(request):
+    return render(request,'user_profile.html')
