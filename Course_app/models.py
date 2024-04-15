@@ -33,7 +33,6 @@ class Course(BaseModel):
         except Cart.DoesNotExist:
             return False
 
-
 class Cart(BaseModel):
     user = models.ForeignKey(User,null=True,blank=True ,on_delete=models.SET_NULL,related_name="carts")
     is_paid = models.BooleanField(default=False)
@@ -42,8 +41,6 @@ class Cart(BaseModel):
     def get_cart_total(self):
         return self.cart_items.aggregate(total=Sum('course__CoursePrice'))['total'] or 0
     
-
-
 class CartItem(BaseModel):
     cart = models.ForeignKey(Cart, related_name='cart_items', on_delete=models.CASCADE)
     course = models.ForeignKey(Course, on_delete=models.CASCADE)

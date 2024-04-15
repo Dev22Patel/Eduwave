@@ -4,7 +4,6 @@ from django.contrib.auth import login,authenticate,logout
 from instamojo_wrapper import Instamojo
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
-# Create your views here.
 from Course_app.models import *;
 from django.contrib import messages
 
@@ -33,11 +32,6 @@ def add_cart(request, c_uid):
 
     return redirect('/viewevents/') 
 
-
-
-
-
-
 @login_required(login_url='/login/')
 def cart(request):
     try:
@@ -46,8 +40,6 @@ def cart(request):
         cart = None
 
     if cart is None or cart.cart_items.count() == 0:
-        # Handle the case where the cart is empty
-        # For example, redirect to a page indicating that the cart is empty
         return render(request, 'empty_cart.html')
     response = api.payment_request_create(
         amount=cart.get_cart_total(),
@@ -60,8 +52,6 @@ def cart(request):
     cart.save()
     context = {'cart': cart, 'payment_url': response['payment_request']['longurl']}
     return render(request, 'cart.html', context)
-
-
 
 def delete_item(request,cart_item_uid):
      CartItem.objects.get(uid = cart_item_uid).delete()

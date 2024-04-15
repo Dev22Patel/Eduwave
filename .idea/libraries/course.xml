@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="course">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/media/course/ai.zip!/" />
+      <root url="jar://$PROJECT_DIR$/media/course/dsa.zip!/" />
+      <root url="jar://$PROJECT_DIR$/media/course/java.zip!/" />
+      <root url="jar://$PROJECT_DIR$/media/course/PPS2_CE-088_LAB6.zip!/" />
+      <root url="jar://$PROJECT_DIR$/media/course/PPSII_088_LAB07.zip!/" />
+      <root url="jar://$PROJECT_DIR$/media/course/PPSII_CE088_LAB2.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
