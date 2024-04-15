@@ -49,12 +49,11 @@ def cart(request):
         # Handle the case where the cart is empty
         # For example, redirect to a page indicating that the cart is empty
         return render(request, 'empty_cart.html')
-
     response = api.payment_request_create(
         amount=cart.get_cart_total(),
         purpose='Buying Course',
         buyer_name=request.user.username,
-        email="notrealdev2211@gmail.com",
+        email=request.user.email,
         redirect_url='http://127.0.0.1:8000/success/',
     )
     cart.instamojo_id = response['payment_request']['id']
